@@ -1,0 +1,15 @@
+
+<div class="container col-md-8 col-md-offset-2" tetx:"todolist">
+<table class = "table table-striped table-condensed">
+  <% @lists.each do |list| %>
+    <tr>
+      <td><%= list.name %></td>
+      <td><%= link_to 'Show', list_path(list) %></td>
+      <td><%= link_to 'Edit', edit_list_path(list) %></td>
+      <td><%= link_to 'Destroy', list_path(list) , method: :delete,data:{confirm:"Are you sure?" } %></td>
+    </tr>
+  <% end %>
+<td>
+</table>
+</div>
+<%= link_to '增加代辦事項' , new_list_path %>

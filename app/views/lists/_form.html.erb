@@ -1,0 +1,30 @@
+<% if @list.errors.present?%>
+  <ul>
+    <% @list.errors.each do |error , message|%>
+      <li><%= "#{error.capitalize}"  "#{message}"%></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<div class="form container">
+<%= form_for @list do |f| %>
+  <div class="from-group">
+    <%= f.label :name , "任務名稱" %>
+    <%= f.text_field  :name,  class: "form-control" %>
+  </div>
+
+  <div class="from-group">
+    <%= f.label :due_date , "截止日期" %>
+    <%= f.text_field :due_date, class: "form-control" %>
+  </div>
+
+  <div class="from-group">
+    <%= f.label :note , "注意事項" %>
+    <%= f.text_field :note, class: "form-control" %>
+  </div>
+
+ <%= f.submit %>
+
+<% end %>
+</div>
+<% link_to '回到首頁' ,lists_path%>
