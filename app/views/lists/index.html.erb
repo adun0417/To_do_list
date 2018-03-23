@@ -1,27 +1,28 @@
+<div class="container col-md-8 col-md-offset-2">
+  <%= "To Do List" %>
+   <table class = "table table-striped table-condensed table-bordered">
+     <tr>
+       <th>完成度</th>
+       <th>待辦事項</th>
+       <th>截止時間</th>
+       <th>展示</th>
+       <th>編輯</th>
+       <th>刪除</th>
+     </tr>
 
-
-<div class="container col-md-8 col-md-offset-2" tetx:"todolist">
-<%= "To Do List" %>
-<table class = "table table-striped table-condensed table-bordered">
-   <tr>
-     <th scope="col">狀態</th>
-     <th scope="col">待辦事項</th>
-     <th scope="col">截止時間</th>
-     <th scope="col">展示</th>
-     <th scope="col">編輯</th>
-     <th scope="col">刪除</th>
-   </tr>
-
-  <% @lists.each do |list| %>
-    <tr>
-      <td><input type="checkbox"></td>
-      <td><%= list.name %></td>
-      <td><%= list.due_date %></td>
-      <td><%= link_to 'Show', list_path(list) %></td>
-      <td><%= link_to 'Edit', edit_list_path(list) %></td>
-      <td><%= link_to 'Destroy', list_path(list) , method: :delete,data:{confirm:"Are you sure?" } %></td>
-    </tr>
-  <% end %>
+    <% @lists.each do |list| %>
+      <tr>
+        <td>
+           <%= check_box_tag :check, true , list.check, data: { url: check_list_path(list), method: :post, remote: true } %>
+        </td>
+        <td><%= list.name %></td>
+        <td><%= list.due_date %></td>
+        <td><%= link_to "<span class='glyphicon glyphicon-open-file'>Show</span>".html_safe, list_path(list), class: "btn btn-info" %></td>
+        <td><%= link_to "<span class='glyphicon glyphicon-edit'>Edit</span>".html_safe, edit_list_path(list), class: "btn btn-default" %></td>
+        <td><%= link_to "<span class='glyphicon glyphicon-remove-sign'>Destroy</span>".html_safe, list_path(list), class: "btn btn-danger", method: :delete, data:{ confirm: "WARNING: Are you sure?"} %></td>
+      </tr>
+    <% end %>
 </table>
-<%= link_to '增加待辦事項' , new_list_path %>
+
+<%= link_to "<span class='glyphicon glyphicon-plus'>增加待辦事項></span>" .html_safe, new_list_path, class: "btn btn-info btn-lg" %>
 </div>
